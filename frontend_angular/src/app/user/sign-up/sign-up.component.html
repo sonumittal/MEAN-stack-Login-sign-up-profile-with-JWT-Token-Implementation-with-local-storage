@@ -1,0 +1,31 @@
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+    <input type="text" #fullName="ngModel" [(ngModel)]="userService1.selectedUser.fullName" name="fullName" placeholder="Full Name"
+    required   maxlength="50" minlength="3" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">  
+    <div *ngIf="signUpForm.submitted && !fullName.valid">
+      <label *ngIf="fullName.errors?.['required']"  class="validation-message">This field is required.</label>
+      <label *ngIf="fullName.errors?.['minlength']"  class="validation-message">Name must be at least 3 characters long.</label>
+    </div>
+    <input type="text" #email="ngModel" [(ngModel)]="userService1.selectedUser.email" name="email" placeholder="Email"
+    required  maxlength="50"  [pattern]="emailPattern"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+    <div *ngIf="signUpForm.submitted && email.errors">
+      <label *ngIf="email.errors?.['required']" class="validation-message">This field is required.</label>
+      <label *ngIf="email.errors?.['pattern']" class="validation-message">Invalid email address.</label>
+    </div>
+    <input type="password" #password="ngModel" [(ngModel)]="userService1.selectedUser.password" name="password" placeholder="Password"
+    minlength="6" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+    <div *ngIf="signUpForm.submitted && password.errors">
+      <label *ngIf="password.errors?.['required']" class="validation-message">This field is required.</label>
+      <label *ngIf="password.errors?.['minlength']" class="validation-message">Enter atleast 6 characters.</label>
+    </div>
+    <input type="submit" value="Sign Up">
+  </form>
+  
+  <!-- show success message -->
+  <div class="success" *ngIf="SucessMessage">
+    Saved successfully
+  </div>
+  
+  <!-- show error message -->
+  <div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+  </div>

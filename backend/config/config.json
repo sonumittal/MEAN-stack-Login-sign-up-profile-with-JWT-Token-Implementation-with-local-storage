@@ -1,0 +1,14 @@
+{
+    "development": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/JWTAuthMean",
+        "JWT_SECRET": "@sonu_mittal_auth%",
+        "JWT_EXP": "20m" 
+    },
+    "production": {
+        "PORT": 80,
+        "MONGODB_URI": "mongodb://path/DatabaseName",
+        "JWT_SECRET": "AnySECRETKey",
+        "JWT_EXP": "20m"
+    }
+}
